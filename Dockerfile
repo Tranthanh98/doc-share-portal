@@ -21,7 +21,7 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 # ENV KC_DB_USERNAME=<DBUSERNAME>
 # ENV KC_DB_PASSWORD=<DBPASSWORD>
 ENV KC_HOSTNAME=https://doc-share-portal.herokuapp.com/
-RUN ["/opt/keycloak/bin/kc.sh", "start-dev"]
+RUN ["/opt/keycloak/bin/kc.sh", "start"]
 
 # RUN ["/opt/keycloak/bin/kc.bat", "start"]
 
