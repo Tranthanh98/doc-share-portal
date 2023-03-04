@@ -3,7 +3,8 @@ FROM quay.io/keycloak/keycloak:latest as builder
 # Enable health and metrics support
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
-
+ENV KC_HTTPS_CERTIFICATE_FILE=./server.crt
+ENV KC_HTTPS_CERTIFICATE_KEY_FILE=./server.key
 # Configure a database vendor
 ENV KC_DB=dev-file
 
@@ -21,7 +22,7 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 # ENV KC_DB_USERNAME=<DBUSERNAME>
 # ENV KC_DB_PASSWORD=<DBPASSWORD>
 ENV KC_HOSTNAME=https://doc-share-portal.herokuapp.com/
-RUN ["/opt/keycloak/bin/kc.sh", "start --optimized -p 8443:8443 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin start --optimized"]
+RUN ["/opt/keycloak/bin/kc.sh", "-p 8443:8443 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin start --optimized"]
 
 # RUN ["/opt/keycloak/bin/kc.bat", "start"]
 
