@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: -p 80:8443 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin mykeycloak start --optimized
+  web: /opt/keycloak/bin/kc.bat
