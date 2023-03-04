@@ -9,7 +9,7 @@ ENV KC_DB=dev-file
 
 WORKDIR /opt/keycloak
 # for demonstration purposes only, please make sure to use proper certificates in production instead
-RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=doc-share-portal.herokuapp.com" -alias server -ext "SAN:c=DNS:doc-share-portal.herokuapp.com,IP:34.201.81.34" -keystore conf/server.keystore
+# RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=doc-share-portal.herokuapp.com" -alias server -ext "SAN:c=DNS:doc-share-portal.herokuapp.com,IP:34.201.81.34" -keystore conf/server.keystore
 RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:latest
@@ -21,7 +21,7 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 # ENV KC_DB_USERNAME=<DBUSERNAME>
 # ENV KC_DB_PASSWORD=<DBPASSWORD>
 ENV KC_HOSTNAME=https://doc-share-portal.herokuapp.com/
-RUN ["/opt/keycloak/bin/kc.sh", "start"]
+RUN ["/opt/keycloak/bin/kc.sh", "start --optimized -p 8443:8443 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin start --optimized"]
 
 # RUN ["/opt/keycloak/bin/kc.bat", "start"]
 
