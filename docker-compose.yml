@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    image: doc-share-portal
+    container_name: doc-share-portal-v1
+    ports:
+      - 80:8080
+      - 443:8443
+    # environment:
+    #   PROXY_ADDRESS_FORWARDING: "true"
+    #   KEYCLOAK_USER: admin
+    #   KEYCLOAK_PASSWORD: alehap@#
+    #   DB_SCHEMA: dbo
+    #   DB_VENDOR: mssql
+    #   DB_USER: sa
+    #   DB_PASSWORD: "yourStrong(!)Password"
+    #   DB_ADDR: localhost
+    #   DB_DATABASE: ds_portal
+    #   DB_PORT:
+    # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
+    #JDBC_PARAMS: "Connection Timeout=30000"
+    networks:
+      - database_static-network
+networks:
+  # Declare our private network.  We must declare one for the magic
+  # Docker DNS to work, but otherwise its default settings are fine.
+  database_static-network:
+    external: false
+    enable_ipv6: false

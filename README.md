@@ -1,5 +1,4 @@
-Keycloak
-========
+# Keycloak
 
 To get help configuring Keycloak via the CLI, run:
 
@@ -11,7 +10,7 @@ on Windows:
 
     $ bin\kc.bat
 
-To try Keycloak out in development mode, run: 
+To try Keycloak out in development mode, run:
 
 on Linux/Unix:
 
@@ -20,6 +19,8 @@ on Linux/Unix:
 on Windows:
 
     $ bin\kc.bat start-dev
+
+in case you're facing with error Permission denied. please run: chmod a+rwx bin/kc.sh
 
 After the server boots, open http://localhost:8080 in your web browser. The welcome page will indicate that the server is running.
 
